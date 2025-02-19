@@ -364,7 +364,7 @@ const Project = ({ dashboard }) => {
                                     <div className="filter-text mb-2">Pilih metode pengadaan yang sesuai</div>
                                     <div className="line mb-2"></div>
                                     <div className="d-flex flex-column justify-content-between equal-buttons" style={{ gap: "8px" }}>
-                                    <button
+                                        <button
                                             className={`btn ${selectedFilters.includes("E-Purchasing") ? "selected" : ""}`}
                                             onClick={() => toggleFilter("E-Purchasing")}
                                         >
@@ -392,7 +392,7 @@ const Project = ({ dashboard }) => {
                                             className={`btn ${selectedFilters.includes("Sayembara") ? "selected" : ""}`}
                                             onClick={() => toggleFilter("Sayembara")}
                                         >
-                                           Sayembara
+                                            Sayembara
                                         </button>
                                         <button
                                             className={`btn ${selectedFilters.includes("Seleksi") ? "selected" : ""}`}
@@ -622,15 +622,208 @@ const Project = ({ dashboard }) => {
 
             {/* Project Details Modal */}
             <Modal show={projectModal} onHide={() => setProjectModal(false)}>
-                <Modal.Header>
-                    <Modal.Title>Project Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Details for project ID: {selectedProject}</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setProjectModal(false)}>Close</Button>
-                </Modal.Footer>
+                <div className="project-detail-modal">
+                    <div className="project-detail-header">
+                        <div>Detail Paket</div>
+                    </div>
+                    <div className="project-detail-modal-body">
+                        {/* <div className="d-flex flex-row ">
+                            <p>Kode RUP</p>
+                            <div className="d-flex align-items-start">
+                                <p>{selectedProject}</p>
+                            </div>
+                        </div> */}
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Kode RUP</div>
+                            <p>{selectedProject}</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Nama Paket</div>
+                            <p>Belanja Bahan Bimtek SPSE</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Nama K/L/PD</div>
+                            <p>Kementerian Pertahanan</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Satuan Kerja</div>
+                            <p>BALITBANG KEMHAN</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Tahun Anggaran</div>
+                            <p>2025</p>
+                        </div>
+                        <div className="table-container col-12 mb-2">
+                            <div className="col-3">Lokasi Pekerjaan</div>
+                            <table className="custom-table-project">
+                                <thead className="custom-table-project-head">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Provinsi</th>
+                                        <th>Kabupaten/Kota</th>
+                                        <th>Detail Lokasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Jawa Barat</td>
+                                        <td>Bandung</td>
+                                        <td>Jl. Dipatiukur No. 123</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>DKI Jakarta</td>
+                                        <td>Jakarta Pusat</td>
+                                        <td>Jl. Medan Merdeka Barat</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Volume Pekerjaan</div>
+                            <p>1 Paket</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Uraian Pekerjaan</div>
+                            <p>1. Snack Pelaksanaan (Bimtek SPSE)
+                                ( 50, OK, @ 24000 ); 2. Makan Pelaksanaan (Bimtek SPSE)
+                                ( 50, OK, @ 57000 ); 3. Souvenir Kit (Bimtek SPSE) ( 50, PAKET, @ 414000 );
+                                4. Spanduk (Bimtek SPSE) ( 2, Buah, @ 500000 ); 5. Plakat (Bimtek SPSE) ( 3, Buah, @ 500000 );
+                                6. Dokumentasi (Bimtek SPSE) ( 1, Giat, @ 1000000 ); 7. Snack Rapat Persiapan (Bimtek SPSE) ( 40, OK, @ 24000 );
+                                8. Buku Panduan (Bimtek SPSE) ( 50, PAKET, @ 20000 ); 9. Belanja ATK (Bimtek SPSE) ( 1, PAKET, @ 5160000 );
+                                10. Cetak laporan (Bimtek SPSE) ( 10, BUKU, @ 100000 );</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Spesifikasi Pekerjaan</div>
+                            <p>Belanja barang melalui e-purchasing</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Produk Dalam Negeri</div>
+                            <p>Ya</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Usaha Kecil/Koperasi</div>
+                            <p>Ya</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Pra DIPA / DPA</div>
+                            <p>Ya</p>
+                        </div>
+                        <div className="table-container col-12 mb-2">
+                            <div className="col-3">Sumber Dana</div>
+                            <table className="custom-table-project">
+                                <thead className="custom-table-project-head">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Provinsi</th>
+                                        <th>Kabupaten/Kota</th>
+                                        <th>Detail Lokasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Jawa Barat</td>
+                                        <td>Bandung</td>
+                                        <td>Jl. Dipatiukur No. 123</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>DKI Jakarta</td>
+                                        <td>Jakarta Pusat</td>
+                                        <td>Jl. Medan Merdeka Barat</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot className="custom-table-project-foot">
+                                    <tr>
+                                        <td colSpan="4">
+                                            <div className="footer-content">
+                                                <span>Total Pagu</span>
+                                                <span>Rp. 36.370.000</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Total Pagu</div>
+                            <p>Rp. 36.370.000</p>
+                        </div>
+                        <div className="d-flex flex-row col-12 ">
+                            <div className="d-flex flex-row col-3 ">Metode Pemilihan</div>
+                            <p>E-Purchasing</p>
+                        </div>
+                        <div className="table-container col-12">
+                            <div className="col-3">Pemanfaatan Barang/Jasa</div>
+                            <table className="custom-table-project">
+                                <thead className="custom-table-project-head">
+                                    <tr>
+                                        <th>Mulai</th>
+                                        <th>Akhir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 Januari 2024</td>
+                                        <td>1 Januari 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="table-container col-12">
+                            <div className="col-3">Jadwal Pelaksanaan Kontrak</div>
+                            <table className="custom-table-project">
+                                <thead className="custom-table-project-head">
+                                    <tr>
+                                        <th>Mulai</th>
+                                        <th>Akhir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 Januari 2024</td>
+                                        <td>1 Januari 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="table-container col-12 mb-2">
+                            <div className="d-flex flex-row col-3">Jadwal Pemilihan Penyedia</div>
+                            <table className="custom-table-project">
+                                <thead className="custom-table-project-head">
+                                    <tr>
+                                        <th>Mulai</th>
+                                        <th>Akhir</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 Januari 2024</td>
+                                        <td>1 Januari 2025</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="d-flex flex-row col-12">
+                            <div className="d-flex flex-row col-3 ">ID Paket Swakelola</div>
+                            <p>138712573</p>
+                        </div>
+                        <div className="d-flex flex-row col-12">
+                            <div className="d-flex flex-row col-3 ">Tanggal Umumkan Paket</div>
+                            <p>24 Desember 2024 17:23</p>
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-end">
+                        <div className="project-modal-footer">
+                            <div className="project-btn-container">
+                                <button className="project-btn-close" onClick={() => setProjectModal(false)}>Close</button>
+                                <button className="project-btn-print">Print</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Modal>
         </div >
     );

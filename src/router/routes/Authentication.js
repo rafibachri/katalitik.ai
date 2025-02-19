@@ -7,6 +7,7 @@ const Project = lazy(() => import("../../views/Project"))
 const ChatHistory = lazy(() => import("../../views/ChatHistory"))
 const Profile = lazy(() => import("../../views/Profile"))
 const Login = lazy(() => import("../../views/auth/Login"))
+const Register = lazy(() => import("../../views/auth/Register"))
 const Unauthorize = lazy(() => import("../../views/Unauthorize"))
 
 const AuthenticationRoutes = [
@@ -17,6 +18,7 @@ const AuthenticationRoutes = [
   { path: '/chatHistory', element: <ChatHistory />, meta: { layout: "full", publicRoute: true, } },
   { path: '/profile', element: <Profile />, meta: { layout: "full", publicRoute: false, } },
   { path: '/login', element: <Login />, meta: { layout: 'full', publicRoute: false, } },
+  { path: '/register', element: <Register />, meta: { layout: 'full', publicRoute: true, } },
   { path: "/access-control", element: <Unauthorize />, meta: { layout: "full", publicRoute: false, } },
 ]
 

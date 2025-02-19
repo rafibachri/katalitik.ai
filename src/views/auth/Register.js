@@ -6,7 +6,7 @@ import { login } from "../../actions/auth";
 import Alert from "../../components/Alert";
 import { company } from "../../utility/config";
 
-const Login = ({ login }) => {
+const Register = ({ login }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ const Login = ({ login }) => {
     code: "",
   });
 
-  const { customer, email, password, code } = formData;
+  const { customer, email, password, company, usaha, code } = formData;
   const [loading, setLoading] = useState(false);
   const [textPosition, setTextPosition] = useState(0);
   const [isTextFullyDisplayed, setIsTextFullyDisplayed] = useState(false);
@@ -43,7 +43,7 @@ const Login = ({ login }) => {
     e.preventDefault();
 
     setLoading(true);
-    login({ email, password, code })
+    login({ email, password, company, usaha, code })
       .then(() => {
         navigate("/home");
         setLoading(false);
@@ -54,7 +54,7 @@ const Login = ({ login }) => {
   };
 
   return (
-    <div className="login d-flex flex-column align-items-center justify-content-center" style={{ height: "100vh" }}>
+    <div className="register d-flex flex-column align-items-center justify-content-center" style={{ height: "100vh" }}>
       <div className="row  justify-content-center">
         {/* Logo Column */}
         {/* <div className="col-lg-6 col-md-8 text-center mb-4 mb-lg-0">
@@ -63,15 +63,15 @@ const Login = ({ login }) => {
 
         {/* Form Column */}
         {/* <div className="col-lg-6 col-md-8 d-flex align-items-center justify-content-center mt-4" style={{ background: "linear-gradient(to right, #0074d9, #001f3f)", color: "#fff", borderRadius: "10px", padding: "10px", marginBottom: "100px" }}> */}
-        <div className="login-card">
+        <div className="register-card">
           <div className="d-flex flex-row">
             <img src="/assets/images/katalitik-logo-1.png" alt="Header" className="katalitik-logo" />
           </div>
           <div className="d-flex justify-content-between mb-3">
-            <div className="login-title mt-3">Log In</div>
+            <div className="login-title mt-3">Sign Up</div>
           </div>
           <Alert />
-          <form method="post" className="login-form" onSubmit={(e) => onSubmit(e)}>
+          <form method="post" className="register-form" onSubmit={(e) => onSubmit(e)}>
             {/* {(company === undefined || company === null || company === "") && (
               <div className="form-group">
                 <input
@@ -107,7 +107,96 @@ const Login = ({ login }) => {
                 required
               />
             </div>
-            <div className="d-flex flex-row justify-content-between" style={{ gap: "15px" }}>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Alamat Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan No. Telepon Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Tempat Lahir Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Tanggal Lahir Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan No. KTP Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Jenis Usaha Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="company"
+                name="company"
+                value={company}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Perusahaan Anda"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan Jenis Usaha Anda"
+                required
+              />
+            </div>
+            {/* <div className="d-flex flex-row justify-content-between" style={{ gap: "15px" }}>
               <div className="form-group w-100">
                 <input
                   className="form-control"
@@ -128,28 +217,19 @@ const Login = ({ login }) => {
                   onChange={(e) => onChange(e)}
                   placeholder="QWERTYU123"
                   required
+                  readOnly
                 />
               </div>
-            </div>
+            </div> */}
             {loading ? (
               <div className="text-center">Loading...</div>
             ) : (
               <button type="submit" className="btn btn-block" style={{ padding: "8px 24px", color: "#fff", background: "linear-gradient(180deg, #F7002C 0%, #861914 100%)", fontSize: "16px", fontWeight: "600", borderRadius: "6px" }}>
-                Log In
+                Sign In
               </button>
             )}
-            <button type="submit" className="btn btn-block" style={{ padding: "8px 24px", color: "#f7002c", fontSize: "16px", fontWeight: "600", borderRadius: "6px", background: "none", border: "1.5px solid var(--Katalitik-Linear, #F7002C)" }}>
-              Log In dengan cara lain
-            </button>
             <div className="d-flex justify-content-center">
-              <a style={{ color: "#f7002c", textDecoration: "none" }} href="/register" target="_blank" rel="noopener noreferrer">Belum punya akun? Registrasi disini</a>
-            </div>
-            <div className="d-flex justify-content-between w-100 mb-2 mt-2">
-              <div className="d-flex flex-row">
-                <input type="checkbox" name="remember" value="remember" placeholder="remember me" />
-                <div className="ml-2">Remember me</div>
-              </div>
-              <a style={{ color: "#f7002c", textDecoration: "none" }} href="" target="_blank" rel="noopener noreferrer">Forgot Password?</a>
+              <a style={{ color: "#f7002c", textDecoration: "none" }} href="/login" target="_blank" rel="noopener noreferrer">Sudah punya akun? Login disini</a>
             </div>
           </form>
         </div>
@@ -159,8 +239,8 @@ const Login = ({ login }) => {
   );
 };
 
-Login.propTypes = {
+Register.propTypes = {
   login: PropTypes.func.isRequired,
 };
 
-export default connect(null, { login })(Login);
+export default connect(null, { login })(Register);

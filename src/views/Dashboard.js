@@ -114,7 +114,7 @@ const Dashboard = ({ dashboard }) => {
     series: [60, 40],
     options: {
       chart: { type: "polarArea" },
-      labels: ["Bukan Usaha Kecil/Koperasi", "Usaha Kecil/Koperasi"],
+      labels: ["Non-Small Business/Cooperative", "Small Business/Cooperative"],
       colors: ["#861A14", "#F93C65"],
       stroke: { colors: ["#fff"] },
       legend: {
@@ -209,118 +209,120 @@ const Dashboard = ({ dashboard }) => {
               <button className="export-button"><BiExport /> Export</button>
             </div>
             {/* <div className="today-sales-cards"> */}
-            <div className="today-sales-cards-container">
-              <div className="today-sales-cards">
-                {/* {[...Array(4)].map((_, index) => ( */}
-                <div className="today-cards">
-                  <div className="card-art">
-                    <BiMoney size={25} />
+            <div className="dashboard-section">
+              <div className="today-sales-cards-container">
+                <div className="today-sales-cards">
+                  {/* {[...Array(4)].map((_, index) => ( */}
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <BiMoney size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">Rp. 120.000.000</p>
+                      <p className="today-card-title">Total Budget</p>
+                      <p className="today-card-sub">Total of maximum allocated funds.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="today-card-total">Rp. 120.000.000</p>
-                    <p className="today-card-title">Total Budget</p>
-                    <p className="today-card-sub">Total of maximum allocated funds.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <BsBoxes size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total Procurement</p>
+                      <p className="today-card-sub">Total of procurement<br></br> projects.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <BsBoxes size={25} />
+                  {/* ))} */}
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <BiSolidCoupon size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total E-Purchasing</p>
+                      <p className="today-card-sub">Total purchases via electronic catalog.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total Procurement</p>
-                    <p className="today-card-sub">Total of procurement<br></br> projects.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <BiTrophy size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total Contest</p>
+                      <p className="today-card-sub">Total projects from creative contests.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                </div>
-                {/* ))} */}
-                <div className="today-cards">
-                  <div className="card-art">
-                    <BiSolidCoupon size={25} />
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <LuBoxSelect size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total Selection</p>
+                      <p className="today-card-sub">Total projects chosen by qualification.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total E-Purchasing</p>
-                    <p className="today-card-sub">Total purchases via electronic catalog.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <FaTag size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total Competition</p>
+                      <p className="today-card-sub">Total projects awarded through competition.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <BiTrophy size={25} />
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <FaRegHandshake size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Direct Procurement</p>
+                      <p className="today-card-sub">Total projects bought directly.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total Contest</p>
-                    <p className="today-card-sub">Total projects from creative contests.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <FaRegHandPointRight size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Direct Appointment</p>
+                      <p className="today-card-sub">Total projects assigned without bidding.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <LuBoxSelect size={25} />
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <MdOutlineDocumentScanner size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Multi-Year Contract</p>
+                      <p className="today-card-sub">Total projects with multi-year contracts.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total Selection</p>
-                    <p className="today-card-sub">Total projects chosen by qualification.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
-                  </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <FaTag size={25} />
-                  </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total Competition</p>
-                    <p className="today-card-sub">Total projects awarded through competition.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
-                  </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <FaRegHandshake size={25} />
-                  </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Direct Procurement</p>
-                    <p className="today-card-sub">Total projects bought directly.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
-                  </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <FaRegHandPointRight size={25} />
-                  </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Direct Appointment</p>
-                    <p className="today-card-sub">Total projects assigned without bidding.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
-                  </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <MdOutlineDocumentScanner size={25} />
-                  </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Multi-Year Contract</p>
-                    <p className="today-card-sub">Total projects with multi-year contracts.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
-                  </div>
-                </div>
-                <div className="today-cards">
-                  <div className="card-art">
-                    <PiGavelBold size={25} />
-                  </div>
-                  <div>
-                    <p className="today-card-total">123</p>
-                    <p className="today-card-title">Total Quick-Tender</p>
-                    <p className="today-card-sub">Total projects via fast bidding.</p>
-                    <p className="today-cards-plus">+1,2% from yesterday</p>
+                  <div className="today-cards">
+                    <div className="card-art">
+                      <PiGavelBold size={25} />
+                    </div>
+                    <div>
+                      <p className="today-card-total">123</p>
+                      <p className="today-card-title">Total Quick-Tender</p>
+                      <p className="today-card-sub">Total projects via fast bidding.</p>
+                      <p className="today-cards-plus">+1,2% from yesterday</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -463,7 +465,7 @@ const Dashboard = ({ dashboard }) => {
                               },
                               tooltip: { enabled: false },
                               xaxis: { categories: [item.institution] },
-                              colors: ["#F93C65"],
+                              colors: ["#861a14"],
                             }}
                             series={[{ data: [(item.total / maxBudget) * 70] }]}
                             type="bar"
@@ -508,7 +510,7 @@ const Dashboard = ({ dashboard }) => {
                               },
                               tooltip: { enabled: false },
                               xaxis: { categories: [item.institution] },
-                              colors: ["#F93C65"],
+                              colors: ["#861a14"],
                             }}
                             series={[{ data: [(item.total / maxTotal) * 50] }]}
                             type="bar"
