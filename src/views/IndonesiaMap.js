@@ -1,34 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import indonesiaGeoJSON from "../maps/Indonesia.js";
 
 const IndonesiaMap = () => {
+  const [geoData, setGeoData] = useState(null); 
+
+  useEffect(() => {
+    fetch("/indonesia.geojson")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("GeoJSON Data Loaded:", data); 
+        setGeoData(data);
+      })
+      .catch((error) => console.error("Error loading GeoJSON:", error));
+  }, []);
+  
+
   return (
-    <div className="customer-chart">
-      <div className="dashboard-title">Regional Procurement and Budget Summary</div>
-      <p className="dashboard-sub">Ringkasan pengadaan dan anggaran di daerah Indonesia</p>
-      
-      <ComposableMap projection="geoMercator" width={500} height={400}>
-        <Geographies geography={indonesiaGeoJSON}>
+    <ComposableMap projection="geoMercator" projectionConfig={{ scale: 900 }}>
+      {geoData && (
+        <Geographies geography={geoData}>
           {({ geographies }) =>
             geographies.map((geo) => (
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill="#F93C65"
-                stroke="#FFF"
                 style={{
-                  default: { outline: "none" },
-                  hover: { fill: "#861A14", outline: "none" },
-                  pressed: { fill: "#FF0000", outline: "none" },
+                  default: { fill: "#D3D3D3", stroke: "#FFF" },
+                  hover: { fill: "#F53", stroke: "#FFF" },
+                  pressed: { fill: "#E42", stroke: "#FFF" },
                 }}
               />
             ))
           }
         </Geographies>
-      </ComposableMap>
-    </div>
+      )}
+    </ComposableMap>
   );
 };
+console.log("map", fetch("/indonesia.geojson") )
 
 export default IndonesiaMap;

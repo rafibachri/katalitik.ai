@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles.css"
-import { ArrowClockwise, ArrowLeftCircle, ArrowRightCircle, ArrowDown, ArrowDownCircleFill, ArrowUp, ArrowUpCircleFill, BarChartFill, GraphUpArrow, Clock, Dot, Calendar2DateFill, Calendar2Fill, Activity, GraphDownArrow, Wechat, PeopleFill, Fire, Person, PersonFill, CheckCircleFill, } from "react-bootstrap-icons";
-import { MdAutorenew, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowDown, MdKeyboardDoubleArrowUp, MdOutlineDocumentScanner, MdPerson } from "react-icons/md";
+import { ArrowClockwise, ArrowLeftCircle, ArrowRightCircle, ArrowDown, ArrowDownCircleFill, ArrowUp, ArrowUpCircleFill, BarChartFill, GraphUpArrow, Clock, Dot, Calendar2DateFill, Calendar2Fill, Activity, GraphDownArrow, Wechat, PeopleFill, Fire, Person, PersonFill, CheckCircleFill, AlignCenter, } from "react-bootstrap-icons";
+import { MdAutorenew, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowDown, MdKeyboardDoubleArrowUp, MdOutlineDocumentScanner, MdOutlineStore, MdOutlineStorefront, MdPerson } from "react-icons/md";
 import { LuBoxSelect, LuMousePointer, LuPackageOpen, LuSquareDashedBottom, LuSquareDashedBottomCode } from "react-icons/lu";
 import { PiArrowsClockwiseBold } from "react-icons/pi";
 import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad, BiSolidCoupon, BiTrophy } from "react-icons/bi";
@@ -24,6 +24,7 @@ import ReactECharts from 'echarts-for-react';
 // import indonesiaMap from '@echarts-maps/indonesia';
 import IndonesiaMap from "./IndonesiaMap";
 import Select2 from "../components/Select2";
+import { RiGovernmentLine } from "react-icons/ri";
 
 
 const Dashboard = ({ dashboard }) => {
@@ -120,6 +121,7 @@ const Dashboard = ({ dashboard }) => {
       legend: {
         position: 'bottom',
         horizontalAlign: 'center',
+        show: false
       },
     },
   };
@@ -186,8 +188,8 @@ const Dashboard = ({ dashboard }) => {
       <div className="page-content">
         <div className="dashboard-header">
           <h2>Dashboard</h2>
-          <p>Fitur ini merekapitulasi RUP berdasarkan seluruh sumber dana
-            dari pengumuman yang telah dilakukan oleh kementerian/instansi/pemerintah daerah di Indonesia.</p>
+          <p>This feature provides a summary of the day's key procurement activities by recapitulating the Procurement Plan 
+            (RUP) based on all funding sources from announcements made by ministries, agencies, and local governments in Indonesia.</p>
         </div>
 
         <div className="dashboard-section top-section">
@@ -211,7 +213,7 @@ const Dashboard = ({ dashboard }) => {
             {/* <div className="today-sales-cards"> */}
             <div className="dashboard-section">
               <div className="today-sales-cards-container">
-                <div className="today-sales-cards">
+                <div className="today-top-card">
                   {/* {[...Array(4)].map((_, index) => ( */}
                   <div className="today-cards">
                     <div className="card-art">
@@ -269,6 +271,8 @@ const Dashboard = ({ dashboard }) => {
                       <p className="today-cards-plus">+1,2% from yesterday</p>
                     </div>
                   </div>
+                </div>
+                <div className="today-bottom-card">
                   <div className="today-cards">
                     <div className="card-art">
                       <FaTag size={25} />
@@ -329,7 +333,28 @@ const Dashboard = ({ dashboard }) => {
               <div className="target-reality-chart">
                 <div className="dashboard-title">Total Types of Business</div>
                 <p className="dashboard-sub">Total of business categories</p>
-                <ReactApexChart options={polarChartData.options} series={polarChartData.series} type="pie" height={350} />
+                <ReactApexChart className="pie-chart" options={polarChartData.options} series={polarChartData.series} type="pie" height={250} />
+                <div className="chart-legend">
+                  <div className="chart-item">
+                    {/* <span className="chart-color" style={{ backgroundColor: polarChartData.options.colors[0] }}></span> */}
+                    <div className="chart-logo-art">
+                      <RiGovernmentLine />
+                    </div>
+                    <div className="d-flex flex-column">
+                      <span className="chart-label">{polarChartData.options.labels[0]}</span>
+                      <span className="chart-value">{polarChartData.series[0]}</span>
+                    </div>
+                  </div>
+                  <div className="chart-item">
+                    <div className="chart-logo-art2">
+                      <MdOutlineStorefront />
+                    </div>
+                    <div className="d-flex flex-column">
+                      <span className="chart-label">{polarChartData.options.labels[1]}</span>
+                      <span className="chart-value2">{polarChartData.series[1]}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -347,6 +372,7 @@ const Dashboard = ({ dashboard }) => {
             <div className="dashboard-title">Regional Procurement and Budget Summary</div>
             <p className="dashboard-sub">Ringkasan pengadaaan dan anggaran di daerah Indonesia</p>
             {/* <IndonesiaMap /> */}
+            {/* <img src="/assets/images/image-17.png" className=""></img> */}
           </div>
           {/* <div className="target-reality-chart">
             <div className="dashboard-title">Total Types of Business</div>

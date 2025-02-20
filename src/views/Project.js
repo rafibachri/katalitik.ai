@@ -86,7 +86,7 @@ const Project = ({ dashboard }) => {
             <div className="page-content">
                 <div className="dashboard-header">
                     <h2>Project</h2>
-                    <p>Find self-managed procurement packages project from ministries and institutions across Indonesia.
+                    <p>Find procurement packages project from ministries and institutions across Indonesia.
                         Easily search and filter by institution, location, procurement type, fund and date.</p>
                     <div className="filter-container">
                         <button className="filter-btn1" onClick={() => setFilterModal(true)}>Filter <MdKeyboardArrowDown /></button>
@@ -514,9 +514,9 @@ const Project = ({ dashboard }) => {
                                     </div>
                                     <div className="filter-text mb-2">Pilih rentang tanggal pengadaan yang sesuai</div>
                                     <div className="d-flex flex-row justify-content-between">
-                                        <input type="text" className="form-control" placeholder="Min Rp" />
+                                        <input type="date" class="form-control" id="tanggalAwal"/>
                                         <div className="d-flex align-items-center ml-2 mr-2">-</div>
-                                        <input type="text" className="form-control" placeholder="Max Rp" />
+                                        <input type="date" class="form-control" id="tanggalAkhir"/>
                                     </div>
                                     <div className="line mt-2"></div>
                                     <div className="filter-text mt-2">Atau pilih bulan berikut</div>

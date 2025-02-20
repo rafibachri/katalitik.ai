@@ -125,17 +125,6 @@ const Register = ({ login }) => {
                 name="usaha"
                 value={usaha}
                 onChange={(e) => onChange(e)}
-                placeholder="Masukkan No. Telepon Anda"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="usaha"
-                name="usaha"
-                value={usaha}
-                onChange={(e) => onChange(e)}
                 placeholder="Masukkan Tempat Lahir Anda"
                 required
               />
@@ -158,7 +147,29 @@ const Register = ({ login }) => {
                 name="usaha"
                 value={usaha}
                 onChange={(e) => onChange(e)}
-                placeholder="Masukkan No. KTP Anda"
+                placeholder="Masukkan NPWP"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan No. Telepon Anda"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="usaha"
+                name="usaha"
+                value={usaha}
+                onChange={(e) => onChange(e)}
+                placeholder="Masukkan No. Fax"
                 required
               />
             </div>
@@ -185,17 +196,7 @@ const Register = ({ login }) => {
               />
             </div>
 
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="usaha"
-                name="usaha"
-                value={usaha}
-                onChange={(e) => onChange(e)}
-                placeholder="Masukkan Jenis Usaha Anda"
-                required
-              />
-            </div>
+          
             {/* <div className="d-flex flex-row justify-content-between" style={{ gap: "15px" }}>
               <div className="form-group w-100">
                 <input
