@@ -377,45 +377,121 @@ a:hover {
 
 .navbar {
   background-color: var(--light-color);
-  box-shadow: 0 1px 1px 1px rgba(18, 106, 211, 0.08);
+  /* box-shadow: 0 1px 1px 1px rgba(18, 106, 211, 0.08); */
   /* color: white; */
 }
 .sidemenu-opener {
-  width: 30px;
-  height: 30px;
-  text-align: center;
   position: relative;
-  margin-right: 5px;
-  border-radius: 5px;
-  padding-top: 8px;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
   background-color: var(--light-color);
   cursor: pointer;
 }
 .sidemenu-opener:hover {
   color: white;
+  background: #f2f4f8;
+  border-radius: 8px;
 }
 .sidemenu-opener.hidden {
   background-color: var(--light-color) !important;
 }
 .tooltip-text {
   position: absolute;
-  bottom: -25px;
-  background-color: red;
-  color: #333;
-  padding: 4px 8px;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 10px;
   font-size: 12px;
   border-radius: 4px;
-  border: 1px solid #ddd;
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  visibility: hidden;
 }
 
 .sidemenu-opener:hover .tooltip-text {
   opacity: 1;
+  visibility: visible;
 }
+
 .navbar-left {
   gap: 20px;
+}
+.navbar-brand-container {
+  position: relative;
+  display: inline-block;
+}
+
+.popup-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  width: 250px;
+  z-index: 1000;
+  padding: 5px 0;
+  display: flex;
+  width: 232px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  left: 150px;
+  bottom: -137.119px;
+  border-radius: 7px;
+  background: var(--Katalitik-Background, #f2f4f8);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.popup-title {
+  color: var(--Text, #444);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  /* display: flex;
+  flex-direction: column; */
+  /* transition: background 0.2s ease-in-out; */
+}
+.popup-item {
+  color: var(--Text, #444);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  /* display: flex;
+  flex-direction: column; */
+  /* transition: background 0.2s ease-in-out; */
+}
+.popup-item2 {
+  color: var(--Text, #444);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* transition: background 0.2s ease-in-out; */
+}
+
+.popup-item:hover {
+  background: #f2f2f2;
+}
+.upgrade-btn1 {
+  display: flex;
+  margin-left: 6px;
+  padding: 4px;
+  align-items: center;
+  border-radius: 5px;
+  background: var(--back, #e7e1fb);
+  cursor: pointer;
 }
 .navbar-brand {
   margin-top: 10px;
@@ -558,6 +634,7 @@ a:hover {
   width: 14px;
   height: 14px;
   margin-right: 10px;
+  align-items: center;
 }
 .sidebar-icon:hover {
   color: darkred;
@@ -1812,7 +1889,7 @@ input:checked + .slider:before {
   border: 1px solid var(--Katalitik-Stroke, rgba(134, 26, 20, 0.25));
   box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.5);
 }
-.pie-chart{
+.pie-chart {
   display: flex;
   align-items: center;
   justify-content: center;
