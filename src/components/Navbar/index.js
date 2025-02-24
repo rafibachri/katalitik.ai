@@ -23,16 +23,16 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
   const navigate = useNavigate();
 
   const [tooltip, setTooltip] = useState("");
-  const [isOpen, setIsOpen] = useState(false);  // State untuk popup
-  const [selectedOption, setSelectedOption] = useState("1.5 Flash"); // Default teks navbar
+  const [isOpen, setIsOpen] = useState(false);  
+  const [selectedOption, setSelectedOption] = useState("1.5 Flash");
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option); // Ubah teks navbar sesuai pilihan
-    setIsOpen(false); // Tutup popup setelah dipilih
+    setSelectedOption(option); 
+    setIsOpen(false); 
   };
   const toggleActive = () => {
     setIsActive(!isActive);
@@ -95,22 +95,22 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
           <PiNotePencilFill style={{ fontSize: '23px' }} onClick={() => navigate("/home")} />
           {tooltip === "Note" && <span className="tooltip-text">new chat</span>}
         </a>
-        <Link className="navbar-brand" to="home">
+        <div className="navbar-brand">
           {/* <div className="d-flex flex-row justify-content-between">
             <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" />
             <MdKeyboardArrowDown style={{color:"#8E8E93", marginLeft:'6px'}}/>
           </div>
           <div className="navbar-brand-text">1.5 Flash</div> */}
-          <div className="d-flex flex-row justify-content-between" onClick={togglePopup}>
-            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" />
+          <div className="d-flex flex-row justify-content-between">
+            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" onClick={() => navigate("/home")}/>
             {isOpen ? (
-              <MdKeyboardArrowUp style={{ color: "#8E8E93", marginLeft: '6px' }} />
+              <MdKeyboardArrowUp style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup}/>
             ) : (
-              <MdKeyboardArrowDown style={{ color: "#8E8E93", marginLeft: '6px' }} />
+              <MdKeyboardArrowDown style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup}/>
             )}
           </div>
           <div className="navbar-brand-text">{selectedOption}</div>
-        </Link>
+        </div>
         {isOpen && (
           <div className="popup-menu">
             <div className="d-flex flex-column" onClick={() => handleOptionClick("1.5 Flash")}>

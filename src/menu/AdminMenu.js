@@ -11,20 +11,20 @@ import { ColumnsGap, ThreeDots } from "react-bootstrap-icons";
 
 const AdminMenu = [
   {
-    group: "",
+    group: "Main Menu",
     path: "/home",
     icon: <img src="/assets/images/katalitik-logo-3.png" className="sidebar-icon"/>,
     title: "Chat Ai",
   },
 
   {
-    group: "",
+    group: "Main Menu",
     path: "/dashboard",
     icon: <MdDashboard className="sidebar-icon"/>,
     title: "Dashboard",
   },
   {
-    group: "",
+    group: "Main Menu",
     path: "/project",
     icon: <FaBookBookmark className="sidebar-icon"/>,
     title: "Project",

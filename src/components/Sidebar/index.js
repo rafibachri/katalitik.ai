@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 
 // Icon
 import { MdArrowForwardIos } from "react-icons/md";
@@ -10,13 +10,17 @@ import PropTypes from "prop-types";
 import AdminMenu from "../../menu/AdminMenu";
 import { loadCompany } from "../../actions/getData";
 import { loadData } from "../../actions/data";
+import { Pin, ThreeDots } from "react-bootstrap-icons";
+import { FaRegTrashCan } from "react-icons/fa6";
+import { LuPencilLine } from "react-icons/lu";
+
 
 const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRole, setShowMenu, loadData, loadCompany }) => {
 
   let { type, id } = useParams();
   const location = useLocation();
   const locationArr = location.pathname.split("/");
-
+  const navigate = useNavigate();
   const [groupList, setGroupList] = useState({});
   const [activeMenu, setActiveMenu] = useState(null);
   const [first, setFirst] = useState(true);
@@ -29,7 +33,7 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
       path = "/" + locationArr[1] + "/" + locationArr[2];
       setGroupMenu(locationArr[1]);
     }
-    if (locationArr.length === 2 && (locationArr[1] === "company" || locationArr[1] === "dailytask" || locationArr[1] === "home")) {
+    if (locationArr.length === 2 && (locationArr[1] === "dashboard" || locationArr[1] === "project" || locationArr[1] === "chatHistory" || locationArr[1] === "home")) {
       path = "/" + locationArr[1];
       setGroupMenu(locationArr[1]);
     }
@@ -38,6 +42,9 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
       setGroupMenu(locationArr[1]);
     }
     setActiveMenu(path);
+    console.log("locationArr:", locationArr);
+    console.log("activeMenu path:", path);
+    
   }, [locationArr, setGroupMenu, setActiveMenu]);
 
   if (first && groupMenu !== "") {
@@ -129,6 +136,37 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
 
   const companyID = companyList && companyList.length > 0 ? companyList[0].companyID : null;
 
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [activePopupIndex, setActivePopupIndex] = useState(null);
+
+
+  // const togglePopup = (event) => {
+  //   event.stopPropagation(); 
+  //   setMenuVisible((prev) => !prev);
+  // };
+  const togglePopup = (index) => {
+  //   event.stopPropagation(); 
+
+    setActivePopupIndex(activePopupIndex === index ? null : index);
+  };
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".popup-menu2")) {
+        setActivePopupIndex(null);
+      }
+    };
+  
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+  
+
+  // useEffect(() => {
+  //   const handleClickOutside = () => setMenuVisible(false);
+  //   document.addEventListener("click", handleClickOutside);
+  //   return () => document.removeEventListener("click", handleClickOutside);
+  // }, []);
 
   // console.log("co", companyID)
 
@@ -143,23 +181,23 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
         //     if (tempCurrentModule.description === "Perusahaan - Profil Perusahaan") {
         //       return (
         //         <li key={index} className="nav-item">
-        //           <Link className={"nav-link d-flex align-items-center " + (activeMenu === submenu.path ? "active" : "")} to={`${submenu.path}/${companyID}/edit`} onClick={(e) => handleItemClick(e)}>
+        //           <Link className={"nav-link d-flex align-items-center " + (activeMenu === submenu.path ? "active" : "")} to={${submenu.path}/${companyID}/edit} onClick={(e) => handleItemClick(e)}>
         //             {submenu.icon}
         //             <span className="sidebar-text">{submenu.title}</span>
         //           </Link>
         //         </li>
         //       );
         //     } else {
-              return (
-                <li key={index} className="nav-item">
-                  <Link className={"nav-link d-flex align-items-center " + (activeMenu === submenu.path ? "active" : "")} to={submenu.path} onClick={(e) => handleItemClick(e)}>
-                    {submenu.icon}
-                    <span className="sidebar-text">{submenu.title}</span>
-                  </Link>
-                </li>
-              );
-            // }
-          // }
+        return (
+          <li key={index} className="nav-item">
+            <Link className={"nav-link d-flex align-items-center " + (activeMenu === submenu.path ? "active" : "")} to={submenu.path} onClick={(e) => handleItemClick(e)}>
+              {submenu.icon}
+              <span className="sidebar-text">{submenu.title}</span>
+            </Link>
+          </li>
+        );
+        // }
+        // }
         // }
         // return null;
       });
@@ -174,8 +212,8 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
       const tempMenu = roles?.find((obj) => obj.description == item.role);
       if (item.group == undefined || item.group == "" || item.group == "Main Menu" || tempMenu?.isRead) {
         if (item.path === undefined && user != undefined) {
-          const tempCurrentModule = roles.find((obj) => obj.description == item.role);
-          if (tempCurrentModule?.isRead) {
+          // const tempCurrentModule = roles.find((obj) => obj.description == item.role);
+          // if (tempCurrentModule?.isRead) {
             return (
               <Fragment key={index}>
                 <li className="nav-item nav-dropdown" onClick={(e) => handleGroup(e, item.group)}>
@@ -194,8 +232,8 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
                 )}
               </Fragment>
             );
-          }
-          return null;
+          // }
+          // return null;
         }
 
         return (
@@ -208,48 +246,88 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
         );
 
       }
+
       if (item.group == undefined || item.group == "Chat History" || tempMenu?.isRead) {
         if (item.path === undefined && user != undefined) {
-          const tempCurrentModule = roles.find((obj) => obj.description == item.role);
-          if (tempCurrentModule?.isRead) {
-            return (
-              <Fragment key={index}>
-                <li className="nav-item nav-dropdown" onClick={(e) => handleGroup(e, item.group)}>
-                  <div className="nav-link d-flex align-items-center justify-content-between">
-                    <div className="d-flex align-items-center justify-content-between">
-                      <span className="sidebar-text">{item.title}</span>
-                      {item.icon}
-                    </div>
-                    <MdArrowForwardIos className={"nav-arrow " + (groupList[item.group] ? "down" : "")} />
+          // const tempCurrentModule = roles.find((obj) => obj.description == item.role);
+          // if (tempCurrentModule?.isRead) {
+          return (
+            <Fragment key={index}>
+              <li className="nav-item nav-dropdown" onClick={(e) => handleGroup(e, item.group)}>
+                <div className="nav-link d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center justify-content-between">
+                    <span className="sidebar-text">{item.title}</span>
+                    {item.icon}
                   </div>
-                </li>
-                {groupList[item.group] && (
-                  <div id={item.group} className="nav-submenu collape">
-                    {renderSubMenu(item)}
-                  </div>
-                )}
-              </Fragment>
-            );
-          }
-          return null;
+                  <MdArrowForwardIos className={"nav-arrow " + (groupList[item.group] ? "down" : "")} />
+                </div>
+              </li>
+              {groupList[item.group] && (
+                <div id={item.group} className="nav-submenu collape">
+                  {renderSubMenu(item)}
+                </div>
+              )}
+            </Fragment>
+          );
+          // }
+          // return null;
         }
 
         return (
+          // <li key={index} className="nav-item">
+          //   <Link className={"nav-link d-flex align-items-center justify-content-between" + (activeMenu === item.path ? "active" : "")} to={item.path} onClick={(e) => handleItemClick(e)}>
+          //     <span className="sidebar-text">{item.title}</span>
+          //     {item.icon}
+          //   </Link>
+          // </li>
           <li key={index} className="nav-item">
-            <Link className={"nav-link d-flex align-items-center justify-content-between" + (activeMenu === item.path ? "active" : "")} to={item.path} onClick={(e) => handleItemClick(e)}>
-              <span className="sidebar-text">{item.title}</span>
+          <div
+            className={"nav-link d-flex align-items-center justify-content-between " + (activeMenu === item.path ? "active" : "")}
+            onClick={() => navigate(item.path)}
+          >
+            <span className="sidebar-text">{item.title}</span>
+            <div onClick={(e) => { e.stopPropagation(); togglePopup(index);}}style={{ cursor: "pointer", position: "relative" }}>
               {item.icon}
-            </Link>
-          </li>
+            </div>
+          </div>
+        
+          {activePopupIndex === index && (
+            <div style={{ position: "absolute", display: "inline-block" }}>
+              <div className="popup-menu2">
+                <div className="d-flex flex-row">
+                  <Pin />
+                  <div className="popup-title ml-2">Pin</div>
+                </div>
+                <div className="d-flex flex-row">
+                  <LuPencilLine />
+                  <div className="popup-title ml-2">
+                    Rename
+                  </div>
+                </div>
+                <div className="d-flex flex-row">
+                  <FaRegTrashCan color="#861914" />
+                  <div className="popup-title ml-2">
+                    Delete
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </li>
+        
+
         );
 
       }
+
     });
   }
+
   return (
     <nav className={`col-md-2 sidebar ${showMenu ? "active" : ""}`}>
       <div className="sidebar-sticky">
         <ul className="nav flex-column">{renderMenu(AdminMenu)}</ul>
+
         <div className="chatPro">
           <div className="chatPro-content">
             <div className="chatPro-logo">
@@ -265,6 +343,7 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
           </div>
         </div>
       </div>
+
     </nav>
   );
 };
@@ -287,4 +366,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { loadCompany, loadData })(Sidebar);
-
