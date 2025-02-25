@@ -28,7 +28,27 @@ const Project = ({ dashboard }) => {
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [selectedFilters, setSelectedFilters] = useState([]);
 
+    const [selectedKLPD, setSelectedKLPD] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState([]);
 
+    const handleSelectChangeKLPD = (e) => {
+        const value = e.target.value;
+        if (value && !selectedKLPD.includes(value)) {
+            setSelectedKLPD([...selectedKLPD, value]);
+        }
+    };
+
+    const handleSelectChangeLocation = (e) => {
+        const value = e.target.value;
+        if (value && !selectedLocation.includes(value)) {
+            setSelectedLocation([...selectedLocation, value]);
+        }
+    };
+
+    const handleRemove = (value) => {
+        setSelectedKLPD(selectedKLPD.filter(item => item !== value));
+        setSelectedLocation(selectedLocation.filter(item => item !== value));
+    };
     const [currentPage, setCurrentPage] = useState(1);
     const [goToPage, setGoToPage] = useState("");
 
@@ -245,13 +265,23 @@ const Project = ({ dashboard }) => {
                                         <div>K/L/PD</div>
                                     </div>
                                     <div className="filter-text mb-2">Pilih K/L/PD yang sesuai</div>
-                                    <select className="filter-dropdown mb-2">
+                                    <select className="filter-dropdown mb-2" onChange={handleSelectChangeKLPD}>
                                         <option value="">Semua K/L/PD</option>
-                                        <option value="kementerian">Kementerian</option>
-                                        <option value="lembaga">Lembaga</option>
-                                        <option value="pemda">Pemerintah Daerah</option>
+                                        <option value="Kementrian">Kementerian</option>
+                                        <option value="Lembaga">Lembaga</option>
+                                        <option value="Pemerintah Daerah">Pemerintah Daerah</option>
+                                        <option value="DPR">DPR</option>
+                                        <option value="MPR">MPR</option>
                                     </select>
                                     <div className="line"></div>
+                                    <div className="selected-container">
+                                        {selectedKLPD.map((item, index) => (
+                                            <div key={index} className="selectedValue">
+                                                {item}
+                                                <div className="remove-btn" onClick={() => handleRemove(item)}>x</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                             {selectedFilter === "produkDalamNegeri" && (
@@ -309,14 +339,22 @@ const Project = ({ dashboard }) => {
                                         <div>Lokasi</div>
                                     </div>
                                     <div className="filter-text mb-2">Pilih Lokasi yang sesuai</div>
-                                    <select className="filter-dropdown mb-2">
+                                    <select className="filter-dropdown mb-2"  onChange={handleSelectChangeLocation}>
                                         <option value="">Semua Lokasi</option>
-                                        <option value="acehB">Aceh Barat</option>
-                                        <option value="tangerang">Tangerang</option>
-                                        <option value="dki">DKI Jakarta</option>
-                                        <option value="surabaya">Surabaya</option>
+                                        <option value="Aceh Barat">Aceh Barat</option>
+                                        <option value="Tangerang">Tangerang</option>
+                                        <option value="DKI Jakarta">DKI Jakarta</option>
+                                        <option value="Surabaya">Surabaya</option>
                                     </select>
                                     <div className="line"></div>
+                                    <div className="selected-container">
+                                        {selectedLocation.map((item, index) => (
+                                            <div key={index} className="selectedValue">
+                                                {item}
+                                                <div className="remove-btn" onClick={() => handleRemove(item)}>X</div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                             {selectedFilter === "jenis" && (
@@ -514,9 +552,9 @@ const Project = ({ dashboard }) => {
                                     </div>
                                     <div className="filter-text mb-2">Pilih rentang tanggal pengadaan yang sesuai</div>
                                     <div className="d-flex flex-row justify-content-between">
-                                        <input type="date" class="form-control" id="tanggalAwal"/>
+                                        <input type="date" class="form-control" id="tanggalAwal" />
                                         <div className="d-flex align-items-center ml-2 mr-2">-</div>
-                                        <input type="date" class="form-control" id="tanggalAkhir"/>
+                                        <input type="date" class="form-control" id="tanggalAkhir" />
                                     </div>
                                     <div className="line mt-2"></div>
                                     <div className="filter-text mt-2">Atau pilih bulan berikut</div>

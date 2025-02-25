@@ -11,8 +11,9 @@ import AdminMenu from "../../menu/AdminMenu";
 import { loadCompany } from "../../actions/getData";
 import { loadData } from "../../actions/data";
 import { Pin, ThreeDots } from "react-bootstrap-icons";
-import { FaRegTrashCan } from "react-icons/fa6";
+import { FaCircleQuestion, FaRegTrashCan } from "react-icons/fa6";
 import { LuPencilLine } from "react-icons/lu";
+import { FaRegMoon } from "react-icons/fa";
 
 
 const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRole, setShowMenu, loadData, loadCompany }) => {
@@ -44,7 +45,7 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
     setActiveMenu(path);
     console.log("locationArr:", locationArr);
     console.log("activeMenu path:", path);
-    
+
   }, [locationArr, setGroupMenu, setActiveMenu]);
 
   if (first && groupMenu !== "") {
@@ -138,29 +139,32 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [activePopupIndex, setActivePopupIndex] = useState(null);
+  const [darkTheme, setDarkTheme] = useState(false);
 
-
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
   // const togglePopup = (event) => {
   //   event.stopPropagation(); 
   //   setMenuVisible((prev) => !prev);
   // };
   const togglePopup = (index) => {
-  //   event.stopPropagation(); 
+    //   event.stopPropagation(); 
 
     setActivePopupIndex(activePopupIndex === index ? null : index);
   };
-  
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest(".popup-menu2")) {
         setActivePopupIndex(null);
       }
     };
-  
+
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-  
+
 
   // useEffect(() => {
   //   const handleClickOutside = () => setMenuVisible(false);
@@ -214,24 +218,24 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
         if (item.path === undefined && user != undefined) {
           // const tempCurrentModule = roles.find((obj) => obj.description == item.role);
           // if (tempCurrentModule?.isRead) {
-            return (
-              <Fragment key={index}>
-                <li className="nav-item nav-dropdown" onClick={(e) => handleGroup(e, item.group)}>
-                  <div className="nav-link d-flex align-items-center justify-content-between">
-                    <div className="d-flex align-items-center">
-                      {item.icon}
-                      <span className="sidebar-text">{item.title}</span>
-                    </div>
-                    <MdArrowForwardIos className={"nav-arrow " + (groupList[item.group] ? "down" : "")} />
+          return (
+            <Fragment key={index}>
+              <li className="nav-item nav-dropdown" onClick={(e) => handleGroup(e, item.group)}>
+                <div className="nav-link d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center">
+                    {item.icon}
+                    <span className="sidebar-text">{item.title}</span>
                   </div>
-                </li>
-                {groupList[item.group] && (
-                  <div id={item.group} className="nav-submenu collape">
-                    {renderSubMenu(item)}
-                  </div>
-                )}
-              </Fragment>
-            );
+                  <MdArrowForwardIos className={"nav-arrow " + (groupList[item.group] ? "down" : "")} />
+                </div>
+              </li>
+              {groupList[item.group] && (
+                <div id={item.group} className="nav-submenu collape">
+                  {renderSubMenu(item)}
+                </div>
+              )}
+            </Fragment>
+          );
           // }
           // return null;
         }
@@ -281,40 +285,40 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
           //   </Link>
           // </li>
           <li key={index} className="nav-item">
-          <div
-            className={"nav-link d-flex align-items-center justify-content-between " + (activeMenu === item.path ? "active" : "")}
-            onClick={() => navigate(item.path)}
-          >
-            <span className="sidebar-text">{item.title}</span>
-            <div onClick={(e) => { e.stopPropagation(); togglePopup(index);}}style={{ cursor: "pointer", position: "relative" }}>
-              {item.icon}
+            <div
+              className={"nav-link d-flex align-items-center justify-content-between " + (activeMenu === item.path ? "active" : "")}
+              onClick={() => navigate(item.path)}
+            >
+              <span className="sidebar-text">{item.title}</span>
+              <div onClick={(e) => { e.stopPropagation(); togglePopup(index); }} style={{ cursor: "pointer", position: "relative" }}>
+                {item.icon}
+              </div>
             </div>
-          </div>
-        
-          {activePopupIndex === index && (
-            <div style={{ position: "absolute", display: "inline-block" }}>
-              <div className="popup-menu2">
-                <div className="d-flex flex-row">
-                  <Pin />
-                  <div className="popup-title ml-2">Pin</div>
-                </div>
-                <div className="d-flex flex-row">
-                  <LuPencilLine />
-                  <div className="popup-title ml-2">
-                    Rename
+
+            {activePopupIndex === index && (
+              <div style={{ position: "absolute", display: "inline-block" }}>
+                <div className="popup-menu2">
+                  <div className="d-flex flex-row">
+                    <Pin />
+                    <div className="popup-title ml-2">Pin</div>
                   </div>
-                </div>
-                <div className="d-flex flex-row">
-                  <FaRegTrashCan color="#861914" />
-                  <div className="popup-title ml-2">
-                    Delete
+                  <div className="d-flex flex-row">
+                    <LuPencilLine />
+                    <div className="popup-title ml-2">
+                      Rename
+                    </div>
+                  </div>
+                  <div className="d-flex flex-row">
+                    <FaRegTrashCan color="#861914" />
+                    <div className="popup-title ml-2">
+                      Delete
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-        </li>
-        
+            )}
+          </li>
+
 
         );
 
@@ -327,7 +331,19 @@ const Sidebar = ({ showMenu, user, data, master, roles, loadRole, loadCurrentRol
     <nav className={`col-md-2 sidebar ${showMenu ? "active" : ""}`}>
       <div className="sidebar-sticky">
         <ul className="nav flex-column">{renderMenu(AdminMenu)}</ul>
-
+        <div className="nav flex-column">
+          <div className="sidebar-text3">Setup</div>
+          <div className="nav-link">
+            <div className="sidebar-text2" onClick={() => navigate("/home")}><FaCircleQuestion className="mr-2" />FAQ</div>
+          </div>
+          <div className="d-flex flex-row justify-content-between">
+            <div className="sidebar-text3"><FaRegMoon className="mr-2" />Dark Theme</div>
+            <label className="switch">
+              <input type="checkbox" checked={darkTheme} onChange={toggleTheme} />
+              <span className="slider round"></span>
+            </label>
+          </div>
+        </div>
         <div className="chatPro">
           <div className="chatPro-content">
             <div className="chatPro-logo">

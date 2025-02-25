@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { GoSidebarCollapse } from "react-icons/go";
 import { PiNotePencilFill } from "react-icons/pi";
-
+import { Tooltip } from "react-tippy";
 import { logout } from "../../actions/auth";
 import Profile from "../../views/Profile";
 import { useState } from "react";
@@ -23,7 +23,7 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
   const navigate = useNavigate();
 
   const [tooltip, setTooltip] = useState("");
-  const [isOpen, setIsOpen] = useState(false);  
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("1.5 Flash");
 
   const togglePopup = () => {
@@ -31,8 +31,8 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
   };
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option); 
-    setIsOpen(false); 
+    setSelectedOption(option);
+    setIsOpen(false);
   };
   const toggleActive = () => {
     setIsActive(!isActive);
@@ -87,14 +87,17 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
   return (
     <nav className={`navbar sticky-top ${isActive ? 'active' : ''}`}> {/* Add active class */}
       <div className="d-flex justify-content-between align-items-center navbar-left">
-        <a className={`sidemenu-opener ${showMenu ? "" : "hidden"}`} onMouseEnter={() => setTooltip("sideMenu")} onMouseLeave={() => setTooltip("")} onClick={(e) => { toogleMenu(e); }}>
-          <GoSidebarCollapse style={{ fontSize: '23px' }} />
-          {tooltip === "Menu" && <span className="tooltip-text">open sidebar</span>}
-        </a>
-        <a className={`sidemenu-opener`} onMouseEnter={() => setTooltip("newChat")} onMouseLeave={() => setTooltip("")}>
-          <PiNotePencilFill style={{ fontSize: '23px' }} onClick={() => navigate("/home")} />
-          {tooltip === "Note" && <span className="tooltip-text">new chat</span>}
-        </a>
+        <Tooltip title={showMenu ? "Close Menu" : "Open Menu"} position="bottom" trigger="mouseenter" delay={[0, 0]}>
+          <a className={`sidemenu-opener ${showMenu ? "" : "hidden"}`} onClick={toogleMenu}>
+            <GoSidebarCollapse style={{ fontSize: "23px" }} />
+          </a>
+        </Tooltip>
+        {/* New Note */}
+        <Tooltip title="New Chat" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+          <a className="sidemenu-opener" onClick={() => navigate("/home")}>
+            <PiNotePencilFill style={{ fontSize: "23px" }} />
+          </a>
+        </Tooltip>
         <div className="navbar-brand">
           {/* <div className="d-flex flex-row justify-content-between">
             <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" />
@@ -102,30 +105,32 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
           </div>
           <div className="navbar-brand-text">1.5 Flash</div> */}
           <div className="d-flex flex-row justify-content-between">
-            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" onClick={() => navigate("/home")}/>
+            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" onClick={() => navigate("/home")} />
             {isOpen ? (
-              <MdKeyboardArrowUp style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup}/>
+              <MdKeyboardArrowUp style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup} />
             ) : (
-              <MdKeyboardArrowDown style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup}/>
+              <MdKeyboardArrowDown style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup} />
             )}
           </div>
           <div className="navbar-brand-text">{selectedOption}</div>
         </div>
         {isOpen && (
           <div className="popup-menu">
-            <div className="d-flex flex-column" onClick={() => handleOptionClick("1.5 Flash")}>
+            <div className="popup-container" onClick={() => handleOptionClick("1.5 Flash")}>
               <div className="popup-title">1.5 Flash</div>
               <div className="popup-item">For daily assistants</div>
             </div>
-            <div className="d-flex flex-column" onClick={() => handleOptionClick("2.0 Daily Flash Experimental")}>
-              <div className="popup-title">2.0 Daily Flash Experimental</div>
+            <div className="popup-container" onClick={() => handleOptionClick("2.0 Daily Flash Experimental")}>
+              <div className="popup-title">2.0 Flash (Experimental)</div>
               <div className="popup-item"> For smartest model and more</div>
             </div>
-            <div className="popup-item2" onClick={() => handleOptionClick("ChatAi Advanced")}>
+            <div className="popup-item2">
               <div className="d-flex justify-content-between align-items-center">
-                <img src="assets/images/katalitik-logo-2.png" className="sidebar-icon" />
-                <div>ChatAi Advanced</div>
-                <div className="upgrade-btn1">
+                <div className="d-flex flex-row" onClick={() => handleOptionClick("ChatAi Advanced")}>
+                  <img src="assets/images/katalitik-logo-2.png" className="sidebar-icon" />
+                  <div>ChatAi Advanced</div>
+                </div>
+                <div className="upgrade-btn1 ml-4">
                   Upgrade
                 </div>
               </div>
