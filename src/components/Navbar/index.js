@@ -105,7 +105,7 @@ const Navbar = ({ user, logout, toogleMenu, showMenu }) => {
           </div>
           <div className="navbar-brand-text">1.5 Flash</div> */}
           <div className="d-flex flex-row justify-content-between">
-            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" onClick={() => navigate("/home")} />
+            <img className="mr-2" src="/assets/images/katalitik-logo-4.png" alt="user-avatar" />
             {isOpen ? (
               <MdKeyboardArrowUp style={{ color: "#8E8E93", marginLeft: '6px' }} onClick={togglePopup} />
             ) : (

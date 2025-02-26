@@ -15,8 +15,11 @@ import "../styles.css"
 import { ArrowClockwise, ArrowLeftCircle, ArrowRightCircle, ArrowDown, ArrowDownCircleFill, ArrowUp, ArrowUpCircleFill, BarChartFill, GraphUpArrow, Clock, Dot, Calendar2DateFill, Calendar2Fill, Activity, GraphDownArrow, Wechat, PeopleFill, Fire, Person, PersonFill, CheckCircleFill, AlignCenter, } from "react-bootstrap-icons";
 import { MdAutorenew, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowDown, MdKeyboardDoubleArrowUp, MdOutlineDocumentScanner, MdOutlineStore, MdOutlineStorefront, MdPerson } from "react-icons/md";
 import { LuBoxSelect, LuMousePointer, LuPackageOpen, LuSquareDashedBottom, LuSquareDashedBottomCode } from "react-icons/lu";
+import { BoxSelect, MousePointer, PackageOpen, SquareDashedMousePointer, ScrollText } from "lucide-react";
+
 import { PiArrowsClockwiseBold } from "react-icons/pi";
-import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad, BiSolidCoupon, BiTrophy } from "react-icons/bi";
+import { FiTag } from "react-icons/fi";
+import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad, BiSolidCoupon, BiTrophy, BiSolidDiscount } from "react-icons/bi";
 import { FaRegHandPointRight } from "react-icons/fa6";
 import { PiGavelBold } from "react-icons/pi";
 import ReactApexChart from "react-apexcharts";
@@ -240,7 +243,7 @@ const Dashboard = ({ dashboard }) => {
                   {/* ))} */}
                   <div className="today-cards">
                     <div className="card-art">
-                      <BiSolidCoupon size={25} />
+                      <BiSolidDiscount size={25} />
                     </div>
                     <div>
                       <p className="today-card-total">123</p>
@@ -251,7 +254,7 @@ const Dashboard = ({ dashboard }) => {
                   </div>
                   <div className="today-cards">
                     <div className="card-art">
-                      <BiTrophy size={25} />
+                      <FiTag size={25} />
                     </div>
                     <div>
                       <p className="today-card-total">123</p>
@@ -262,7 +265,7 @@ const Dashboard = ({ dashboard }) => {
                   </div>
                   <div className="today-cards">
                     <div className="card-art">
-                      <LuBoxSelect size={25} />
+                      <SquareDashedMousePointer size={25} />
                     </div>
                     <div>
                       <p className="today-card-total">123</p>
@@ -275,7 +278,7 @@ const Dashboard = ({ dashboard }) => {
                 <div className="today-bottom-card">
                   <div className="today-cards">
                     <div className="card-art">
-                      <FaTag size={25} />
+                      <BiTrophy size={25} />
                     </div>
                     <div>
                       <p className="today-card-total">123</p>
@@ -308,7 +311,7 @@ const Dashboard = ({ dashboard }) => {
                   </div>
                   <div className="today-cards">
                     <div className="card-art">
-                      <MdOutlineDocumentScanner size={25} />
+                      <ScrollText size={25} />
                     </div>
                     <div>
                       <p className="today-card-total">123</p>
@@ -364,9 +367,8 @@ const Dashboard = ({ dashboard }) => {
           <div className="visitor-chart">
             <div className="dashboard-title">Procurement Insights</div>
             <p className="dashboard-sub">Trends of the day's key procurement activities</p>
-            <div className="visitor-chart2">
-              <ReactApexChart options={splineChartData.options} series={splineChartData.series} type="line" height={250} width="100%" />
-            </div>
+              <ReactApexChart className="visitor-chart2" options={splineChartData.options} series={splineChartData.series} type="line" height={250} width="100%" />
+  
           </div>
           <div className="customer-chart">
             <div className="dashboard-title">Regional Procurement and Budget Summary</div>

@@ -1312,7 +1312,7 @@ input:checked + .slider:before {
 .search-btn {
   width: 40px;
   height: 40px;
-  background: linear-gradient(180deg, #f7002c 0%, #861914 100%);
+  background: none;
   border-radius: 7px;
   border: none;
   display: flex;
@@ -1881,7 +1881,7 @@ input:checked + .slider:before {
   height: auto;
   padding: 16px;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 16px;
   border-radius: 20px;
   background: var(--White, #fff);
@@ -1890,9 +1890,10 @@ input:checked + .slider:before {
 }
 .visitor-chart2 {
   display: flex;
-  width: auto;
-  height: auto;
+  /* width: auto;
+  height: auto; */
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 

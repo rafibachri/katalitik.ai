@@ -5,6 +5,7 @@ import "../styles.css";
 import { BiSearch } from "react-icons/bi";
 import { Send, Soundwave } from "react-bootstrap-icons";
 import { MdOutlineSend, MdOutlineWavingHand, MdWavingHand } from "react-icons/md";
+import { VscSend } from "react-icons/vsc";
 
 const Home = ({ dashboard }) => {
   const [filter, setFilter] = useState(false);
@@ -50,9 +51,9 @@ const Home = ({ dashboard }) => {
                 value={inputText}
                 onChange={handleInputChange}
               />
-              <button className="search-btn">
-                <MdOutlineSend style={{ color: "white" }} />
-              </button>
+              <div className="search-btn">
+                <VscSend size={25}/>
+              </div>
             </div>
             {/* <div className="line"></div> */}
             <div className="options">

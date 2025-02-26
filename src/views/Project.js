@@ -14,7 +14,7 @@ import { MdAutorenew, MdCurrencyExchange, MdInfoOutline, MdKeyboardArrowDown, Md
 import { RiGovernmentLine } from "react-icons/ri";
 import { PiArrowsClockwiseBold, PiClockCounterClockwise, PiSpeakerHigh, PiSquaresFour } from "react-icons/pi";
 import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad } from "react-icons/bi";
-import { LuPackageCheck, LuPackageSearch } from "react-icons/lu";
+import { LuPackageCheck, LuPackageSearch, LuLectern  } from "react-icons/lu";
 import { TbPodium } from "react-icons/tb";
 
 const Project = ({ dashboard }) => {
@@ -153,7 +153,7 @@ const Project = ({ dashboard }) => {
                                 <div className="project-tag"><PiSquaresFour />Jenis Pengadaan: Barang</div>
                                 <div className="project-tag"><LuPackageCheck />Jenis Produk: Dalam Negeri</div>
                                 <div className="project-tag"><BsShop />Jenis Usaha: Bukan Usaha Kecil/Koperasi</div>
-                                <div className="project-tag"><TbPodium />Jenis Metode: Pengadaan Langsung</div>
+                                <div className="project-tag"><LuLectern />Jenis Metode: Pengadaan Langsung</div>
                             </div>
                             <div className="d-flex flex-row align-items-center" style={{ gap: "4px" }}>
                                 <MdOutlineLocationOn />
