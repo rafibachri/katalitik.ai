@@ -16,13 +16,12 @@ import { ArrowClockwise, ArrowLeftCircle, ArrowRightCircle, ArrowDown, ArrowDown
 import { MdOutlineSend, MdAutorenew, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowDown, MdKeyboardDoubleArrowUp, MdPerson } from "react-icons/md";
 import { LuPackageOpen, LuThumbsUp } from "react-icons/lu";
 import { HiOutlineSquare2Stack } from "react-icons/hi2";
+import { VscSend } from "react-icons/vsc";
 import { PiArrowsClockwiseBold, PiSpeakerHifi, PiSpeakerHigh, PiThumbsDownDuotone } from "react-icons/pi";
 import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad } from "react-icons/bi";
 import ReactApexChart from "react-apexcharts";
 import ReactECharts from 'echarts-for-react';
-// import indonesiaMap from '@echarts-maps/indonesia';
-import IndonesiaMap from "./IndonesiaMap";
-import Select2 from "../components/Select2";
+import { Tooltip } from "react-tippy";
 
 
 const ChatHistory = ({ dashboard }) => {
@@ -85,11 +84,31 @@ const ChatHistory = ({ dashboard }) => {
                                     subsidi angkutan motor melalui kereta api, serta pengoperasian dan perawatan prasarana perkeretaapian milik negara.
                                 </div>
                                 <div className="chat-response-icon">
-                                    <div><PiSpeakerHigh size={20} style={{ cursor: "pointer" }} /></div>
-                                    <div><LuThumbsUp size={20} style={{ cursor: "pointer" }} /></div>
-                                    <div><PiThumbsDownDuotone size={20} style={{ cursor: "pointer" }} /></div>
-                                    <div><HiOutlineSquare2Stack size={20} style={{ cursor: "pointer" }} /></div>
-                                    <div><ArrowClockwise size={20} style={{ cursor: "pointer" }} /></div>
+                                    <div>
+                                        <Tooltip title="Listen" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+                                            <PiSpeakerHigh size={20} style={{ cursor: "pointer" }} />
+                                        </Tooltip>
+                                    </div>
+                                    <div>
+                                        <Tooltip title="Like" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+                                            <LuThumbsUp size={20} style={{ cursor: "pointer" }} />
+                                        </Tooltip>
+                                    </div>
+                                    <div>
+                                        <Tooltip title="Dislike" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+                                            <PiThumbsDownDuotone size={20} style={{ cursor: "pointer" }} />
+                                        </Tooltip>
+                                    </div>
+                                    <div>
+                                        <Tooltip title="Copy" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+                                            <HiOutlineSquare2Stack size={20} style={{ cursor: "pointer" }} />
+                                        </Tooltip >
+                                    </div>
+                                    <div>
+                                        <Tooltip title="Regenerate" position="bottom" trigger="mouseenter" delay={[0, 0]}>
+                                            <ArrowClockwise size={20} style={{ cursor: "pointer" }} />
+                                        </Tooltip>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,9 +123,9 @@ const ChatHistory = ({ dashboard }) => {
                                     value={inputText}
                                     onChange={handleInputChange}
                                 />
-                                <button className="search-btn">
-                                    <MdOutlineSend style={{ color: "white" }} />
-                                </button>
+                                <div className="search-btn">
+                                    <VscSend size={25} />
+                                </div>
                             </div>
                             {/* <div className="line"></div> */}
                             <div className="options">
@@ -127,7 +146,7 @@ const ChatHistory = ({ dashboard }) => {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 
 };
