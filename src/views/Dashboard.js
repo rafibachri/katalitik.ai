@@ -28,7 +28,9 @@ import ReactECharts from 'echarts-for-react';
 import IndonesiaMap from "./IndonesiaMap";
 import Select2 from "../components/Select2";
 import { RiGovernmentLine } from "react-icons/ri";
-
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import indonesia from "./../indonesia.geojson";
 
 const Dashboard = ({ dashboard }) => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +39,7 @@ const Dashboard = ({ dashboard }) => {
   const chartRef = useRef(null);
   const [activeToggle, setActiveToggle] = useState("Budget");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [showExportOptions, setShowExportOptions] = useState(false);
 
   const handleToggle = (toggle) => {
     setActiveToggle(toggle);
@@ -183,7 +186,19 @@ const Dashboard = ({ dashboard }) => {
 
   const maxBudget = Math.max(...formattedData.map(d => d.total));
 
+  const handleExport = (type) => {
+    if (type === "PDF") {
+      console.log("Download PDF");
 
+    } else if (type === "XLSX") {
+      console.log("Download Excel");
+
+    } else if (type === "Copy") {
+      console.log("Copy Data");
+
+    }
+    setShowExportOptions(false);
+  };
 
   return (
     <div>
@@ -191,7 +206,7 @@ const Dashboard = ({ dashboard }) => {
       <div className="page-content">
         <div className="dashboard-header">
           <h2>Dashboard</h2>
-          <p>This feature provides a summary of the day's key procurement activities by recapitulating the Procurement Plan 
+          <p>This feature provides a summary of the day's key procurement activities by recapitulating the Procurement Plan
             (RUP) based on all funding sources from announcements made by ministries, agencies, and local governments in Indonesia.</p>
         </div>
 
@@ -211,7 +226,14 @@ const Dashboard = ({ dashboard }) => {
                   value={dateList ? dateList.find((option) => option.date === selectedDate) : null} // Cocokkan tanggal yang dipilih
                   handleChange={(e) => onChangeDate(e, "selectedDate")} />
               </div>
-              <button className="export-button"><BiExport /> Export</button>
+              <button className="export-button" onClick={() => setShowExportOptions(!showExportOptions)}><BiExport /> Export</button>
+              {showExportOptions && (
+                <div className="download-options">
+                  <button onClick={() => handleExport("PDF")}>PDF</button>
+                  <button onClick={() => handleExport("XLSX")}>XLSX</button>
+                  <button onClick={() => handleExport("Copy")}>Copy</button>
+                </div>
+              )}
             </div>
             {/* <div className="today-sales-cards"> */}
             <div className="dashboard-section">
@@ -367,13 +389,13 @@ const Dashboard = ({ dashboard }) => {
           <div className="visitor-chart">
             <div className="dashboard-title">Procurement Insights</div>
             <p className="dashboard-sub">Trends of the day's key procurement activities</p>
-              <ReactApexChart className="visitor-chart2" options={splineChartData.options} series={splineChartData.series} type="line" height={250} width="100%" />
-  
+            <ReactApexChart className="visitor-chart2" options={splineChartData.options} series={splineChartData.series} type="line" height={250} width="100%" />
+
           </div>
           <div className="customer-chart">
             <div className="dashboard-title">Regional Procurement and Budget Summary</div>
             <p className="dashboard-sub">Ringkasan pengadaaan dan anggaran di daerah Indonesia</p>
-            {/* <IndonesiaMap /> */}
+            <IndonesiaMap />
             {/* <img src="/assets/images/image-17.png" className=""></img> */}
           </div>
           {/* <div className="target-reality-chart">

@@ -9,6 +9,7 @@ const Profile = lazy(() => import("../../views/Profile"))
 const Login = lazy(() => import("../../views/auth/Login"))
 const Register = lazy(() => import("../../views/auth/Register"))
 const Unauthorize = lazy(() => import("../../views/Unauthorize"))
+const Indonesia = lazy(() => import("../../views/IndonesiaMap"))
 
 const AuthenticationRoutes = [
   // { path: '/home', element: <DashboardContainer />, meta: { layout: "full", publicRoute: false, } },
@@ -16,6 +17,7 @@ const AuthenticationRoutes = [
   { path: '/dashboard', element: <Dashboard />, meta: { layout: "full", publicRoute: true, } },
   { path: '/project', element: <Project />, meta: { layout: "full", publicRoute: true, } },
   { path: '/chatHistory', element: <ChatHistory />, meta: { layout: "full", publicRoute: true, } },
+  { path: '/indonesia', element: <Indonesia />, meta: { layout: "blank", publicRoute: true, } },
   { path: '/profile', element: <Profile />, meta: { layout: "full", publicRoute: false, } },
   { path: '/login', element: <Login />, meta: { layout: 'full', publicRoute: false, } },
   { path: '/register', element: <Register />, meta: { layout: 'full', publicRoute: true, } },

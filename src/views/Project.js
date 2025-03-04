@@ -14,7 +14,7 @@ import { MdAutorenew, MdCurrencyExchange, MdInfoOutline, MdKeyboardArrowDown, Md
 import { RiGovernmentLine } from "react-icons/ri";
 import { PiArrowsClockwiseBold, PiClockCounterClockwise, PiSpeakerHigh, PiSquaresFour } from "react-icons/pi";
 import { BiBarChart, BiComment, BiCommentDetail, BiExport, BiMoney, BiNotepad } from "react-icons/bi";
-import { LuPackageCheck, LuPackageSearch, LuLectern  } from "react-icons/lu";
+import { LuPackageCheck, LuPackageSearch, LuLectern } from "react-icons/lu";
 import { TbPodium } from "react-icons/tb";
 
 const Project = ({ dashboard }) => {
@@ -27,7 +27,7 @@ const Project = ({ dashboard }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState(null);
     const [selectedFilters, setSelectedFilters] = useState([]);
-
+    const [showDownloadOptions, setShowDownloadOptions] = useState(false);
     const [selectedKLPD, setSelectedKLPD] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState([]);
 
@@ -100,6 +100,20 @@ const Project = ({ dashboard }) => {
         setSelectedDate(date);
     };
 
+    const handleDownload = (type) => {
+        if (type === "PDF") {
+            console.log("Download PDF");
+
+        } else if (type === "XLSX") {
+            console.log("Download Excel");
+
+        } else if (type === "Copy") {
+            console.log("Copy Data");
+
+        }
+        setShowDownloadOptions(false);
+    };
+
     return (
         <div>
             {/* Page Content */}
@@ -113,7 +127,14 @@ const Project = ({ dashboard }) => {
                         <div className="search-container">
                             <input type="text" placeholder="Search..." className="form-control" />
                         </div>
-                        <button className="dl-btn"><FaDownload style={{ color: "white" }} /></button>
+                        <button className="dl-btn" onClick={() => setShowDownloadOptions(!showDownloadOptions)}><FaDownload style={{ color: "white" }} /></button>
+                        {showDownloadOptions && (
+                            <div className="download-options">
+                                <button onClick={() => handleDownload("PDF")}>PDF</button>
+                                <button onClick={() => handleDownload("XLSX")}>XLSX</button>
+                                <button onClick={() => handleDownload("Copy")}>Copy</button>
+                            </div>
+                        )}
                     </div>
                     <div className="dashboard-last-update">Last Update 21 Januari 2025 01:47 WIB</div>
                 </div>
@@ -339,7 +360,7 @@ const Project = ({ dashboard }) => {
                                         <div>Lokasi</div>
                                     </div>
                                     <div className="filter-text mb-2">Pilih Lokasi yang sesuai</div>
-                                    <select className="filter-dropdown mb-2"  onChange={handleSelectChangeLocation}>
+                                    <select className="filter-dropdown mb-2" onChange={handleSelectChangeLocation}>
                                         <option value="">Semua Lokasi</option>
                                         <option value="Aceh Barat">Aceh Barat</option>
                                         <option value="Tangerang">Tangerang</option>

@@ -75,7 +75,7 @@ export const login = ({ email, password }) => async dispatch => {
 export const logout = ({ email }) => async dispatch => {
   try {
     const body = { email };
-    await axios.post('/auth/logout', body);
+    // await axios.post('/auth/logout', body);
     dispatch({ type: LOGOUT });
     return Promise.resolve();
   } catch (err) {
